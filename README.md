@@ -29,11 +29,12 @@ Output:
 
 ## 🛠️ Tech Stack
 
+<ul>
 Frontend: Flask
 Backend: Python
 AI: ChatGoogleGenerativeAI, LangChain, LangSmith, LangChain Agents, TavilySearchResults
 Scraping: Scrapin.io
-
+</ul>
 
 
 
