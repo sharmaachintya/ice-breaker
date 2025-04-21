@@ -1,52 +1,49 @@
-from dotenv import load_dotenv
 import os
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
-from langchain_core.tools import Tool
+
+from langchain import hub
 from langchain.agents import (
     create_react_agent,
     AgentExecutor,
 )
-import getpass
-from langchain import hub
+from langchain_core.tools import Tool
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
 from linkedin_tool import get_profile_url
+import getpass
 
 load_dotenv()
 
 
 def lookup(name: str) -> str:
 
+
     if "GOOGLE_API_KEY" not in os.environ:
-        os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter your Google AI API key: ")
+            os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter your Google AI API key: ")
 
-    llm = ChatGoogleGenerativeAI(temperature=0, model="gemini-1.5-flash")
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
-    template = """
-        given the full name of the person {full_name} I want you to get me their LinkedIn profile page. Your answer should contain only their LinkedIn profile's URL.
-    """
+    template = """given the full name {name_of_person} I want you to get it me a link to their Linkedin profile page.
+                          Your answer should contain only a URL"""
 
-    prompt_template = PromptTemplate(input_variables=["full_name"], template = template)
-
+    prompt_template = PromptTemplate(
+        template=template, input_variables=["name_of_person"]
+    )
     tools_for_agent = [
         Tool(
             name="Crawl Google 4 linkedin profile page",
-            func=get_profile_url, # Tools -> tools.py
-            description="useful for when you need to get the Linkedin Page URL",
+            func=get_profile_url,
+            description="useful for when you need get the Linkedin Page URL",
         )
     ]
 
-    react_propmt = hub.pull("hwchase17/react")
-    agent = create_react_agent(llm=llm, tools=tools_for_agent, prompt=react_propmt)
-
-    agent_executor = AgentExecutor(agent = agent, tools = tools_for_agent, verbose = True)
+    react_prompt = hub.pull("hwchase17/react")
+    agent = create_react_agent(llm=llm, tools=tools_for_agent, prompt=react_prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=tools_for_agent, verbose=True, handle_parsing_errors=True)
 
     result = agent_executor.invoke(
-        input={"input": prompt_template.format_prompt(full_name = name)}
+        input={"input": prompt_template.format_prompt(name_of_person=name)}
     )
 
-    linkedin_url = result["output"]
-    return linkedin_url
-
-if __name__ == "__main__":
-    result_url = lookup("Joe Tsang Informatica")
-    print(result_url)
+    linked_profile_url = result["output"]
+    return linked_profile_url
