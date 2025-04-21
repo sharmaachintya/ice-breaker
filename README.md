@@ -1,16 +1,39 @@
 # Ice Breaker
 
-🧊 IceBreaker AI
-Break the ice. Start better conversations.
+## 🧊 IceBreaker
+<b>Break the ice. Start better conversations.<b>
 
-Welcome to IceBreaker AI, a Generative AI-powered app designed to help you kick-start conversations with anyone. Just enter a name, and our model will generate personalized, engaging ice-breaker points to help you connect better.
+This is IceBreaker, a Generative AI-powered app designed to help you kick-start conversations with anyone. Just enter a name, and our model will generate personalized, engaging ice-breaker points to help you connect better.
 
-🚀 What It Does
-Whether you're meeting a new colleague, networking at an event, or starting a chat with someone new, breaking the ice can be awkward. IceBreaker AI makes it simple by:
+## 🚀 Here’s how it works:
 
-🔍 Analyzing the name input to generate relevant and light-hearted talking points
+🔍 Takes a name as input
 
-💬 Producing fun, quirky, or thoughtful conversation starters
+🌐 Searches for their LinkedIn profile
 
-🤖 Using GenAI to simulate human-like, context-aware interaction
+📄 Extracts public professional info (like job title, industry, interests, experience)
+
+💬 Uses GenAI to craft thoughtful, witty, or insightful ice-breaker prompts
+
+🧊 Helps you break the ice like a pro
+
+## 🌟 Example
+
+Input: 
+
+![image](https://github.com/user-attachments/assets/cb3932b0-1ab2-4cfd-920d-35d0b025cd6f)
+
+Output: 
+
+![image](https://github.com/user-attachments/assets/b219f757-1fb4-4475-991a-2588ae65cdca)
+
+## 🛠️ Tech Stack
+
+Frontend: Flask
+Backend: Python
+AI: ChatGoogleGenerativeAI, LangChain, LangSmith, LangChain Agents, TavilySearchResults
+Scraping: Scrapin.io
+
+
+
 
