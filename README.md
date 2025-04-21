@@ -30,10 +30,10 @@ Output:
 ## 🛠️ Tech Stack
 
 <ul>
-Frontend: Flask
-Backend: Python
-AI: ChatGoogleGenerativeAI, LangChain, LangSmith, LangChain Agents, TavilySearchResults
-Scraping: Scrapin.io
+  <li>Frontend: Flask</li>
+  <li>Backend: Python</li>
+  <li>AI: ChatGoogleGenerativeAI, LangChain, LangSmith, LangChain Agents, TavilySearchResults</li>
+  <li>Scraping: Scrapin.io</li>
 </ul>
 
 
